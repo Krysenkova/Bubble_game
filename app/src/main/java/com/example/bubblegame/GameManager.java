@@ -3,8 +3,7 @@ package com.example.bubblegame;
 import java.util.ArrayList;
 
 public class GameManager {
-    private static final int MAX_CIRCLES = 10;
-
+    public static final int MAX_CIRCLES = 15;
     private MainCircle mainCircle;
     private ArrayList<EnemyCircle> circles;
     private CanvasView canvasView;
@@ -26,7 +25,7 @@ public class GameManager {
             EnemyCircle circle;
             do {
                 circle = EnemyCircle.getRandomCircle();
-            } while (circle.isInterest(mainCircleArea));
+            } while (circle.isIntersect(mainCircleArea));
             circles.add(circle);
         }
         calculateAndSetCirclesColor();
@@ -46,7 +45,6 @@ public class GameManager {
         return height;
     }
 
-
     private void initMainCircle() {
         mainCircle = new MainCircle(width / 2, height / 2);
     }
@@ -62,13 +60,12 @@ public class GameManager {
         mainCircle.moveMainCircleWhenTouchAt(x, y);
         checkCollision();
         moveCircles();
-
     }
 
     private void checkCollision() {
         SimpleCircle circleForDel = null;
         for (EnemyCircle circle : circles) {
-            if (mainCircle.isInterest(circle)) {
+            if (mainCircle.isIntersect(circle)) {
                 if (circle.isSmallerThan(mainCircle)) {
                     mainCircle.growRadius(circle);
                     circleForDel = circle;

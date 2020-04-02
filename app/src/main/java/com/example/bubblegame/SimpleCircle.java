@@ -33,10 +33,10 @@ public class SimpleCircle {
     }
 
     public SimpleCircle getCircleArea() {
-        return new SimpleCircle(x,y, radius * 3);
+        return new SimpleCircle(x, y, radius * 3);
     }
 
-    public boolean isInterest(SimpleCircle circle) {
-        return radius * circle.radius >= Math.sqrt(Math.pow(x-circle.x, 2) + Math.pow (y-circle.y, 2));
+    public boolean isIntersect(SimpleCircle circle) {
+        return radius + circle.radius >= Math.sqrt(Math.pow(x - circle.x, 2) + Math.pow(y - circle.y, 2));
     }
 }

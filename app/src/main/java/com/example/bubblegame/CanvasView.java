@@ -5,16 +5,10 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.util.AttributeSet;
-import android.view.Display;
-import android.view.Gravity;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.WindowManager;
+import android.view.*;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-
-public class CanvasView extends View implements ICanvasView {
+public class CanvasView extends View implements ICanvasView{
     private static int width;
     private static int height;
     private GameManager gameManager;
@@ -22,7 +16,7 @@ public class CanvasView extends View implements ICanvasView {
     private Canvas canvas;
     private Toast toast;
 
-    public CanvasView(Context context, @Nullable AttributeSet attrs) {
+    public CanvasView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initWidthAndHeight(context);
         initPaint();
@@ -42,7 +36,6 @@ public class CanvasView extends View implements ICanvasView {
         display.getSize(point);
         width = point.x;
         height = point.y;
-
     }
 
     @Override
@@ -50,6 +43,7 @@ public class CanvasView extends View implements ICanvasView {
         super.onDraw(canvas);
         this.canvas = canvas;
         gameManager.onDraw();
+
     }
 
     @Override
@@ -69,7 +63,7 @@ public class CanvasView extends View implements ICanvasView {
             toast.cancel();
         }
         toast = Toast.makeText(getContext(), text, Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.CENTER, 0,0);
+        toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
     }
 

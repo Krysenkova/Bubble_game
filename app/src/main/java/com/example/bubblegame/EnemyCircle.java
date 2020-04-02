@@ -4,15 +4,16 @@ import android.graphics.Color;
 
 import java.util.Random;
 
+
 public class EnemyCircle extends SimpleCircle {
+
     public static final int FROM_RADIUS = 10;
     public static final int TO_RADIUS = 110;
     public static final int ENEMY_COLOR = Color.RED;
     public static final int FOOD_COLOR = Color.rgb(0, 200, 0);
-    private static final int RANDOM_SPEED = 10;
+    public static final int RANDOM_SPEED = 10;
     private int dx;
     private int dy;
-
 
     public EnemyCircle(int x, int y, int radius, int dx, int dy) {
         super(x, y, radius);
@@ -28,7 +29,6 @@ public class EnemyCircle extends SimpleCircle {
         int dy = 1 + random.nextInt(RANDOM_SPEED);
         int radius = FROM_RADIUS + random.nextInt(TO_RADIUS - FROM_RADIUS);
         EnemyCircle enemyCircle = new EnemyCircle(x, y, radius, dx, dy);
-        enemyCircle.setColor(ENEMY_COLOR);
         return enemyCircle;
     }
 
@@ -58,7 +58,7 @@ public class EnemyCircle extends SimpleCircle {
             dx = -dx;
         }
         if (y > GameManager.getHeight() || y < 0) {
-            dy = - dy;
+            dy = -dy;
         }
     }
 }
